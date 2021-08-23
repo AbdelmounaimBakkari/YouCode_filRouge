@@ -24,7 +24,7 @@ Route::get('/', function () {
 // Route::fallback(function() {
 //     return view('404');
 //  });
-
+Route::get('/dashboard', [JobController::class, 'indexDashboard'])->name('jobs.indexDashboard');
 Route::get('/jobs', [JobController::class, 'index'])->name('jobs.index');
 Route::get('/jobs/create', [JobController::class, 'create'])->name('jobs.create');
 Route::post('/jobs/store', [JobController::class, 'store'])->name('jobs.store');

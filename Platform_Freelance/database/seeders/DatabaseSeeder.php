@@ -13,6 +13,10 @@ class DatabaseSeeder extends Seeder
      */
     public function run()
     {
-        // \App\Models\User::factory(10)->create();
+        for ($i = 0; $i < 2; $i++) {
+            $role = new \App\Models\Role();
+            $role->name = $i === 0 ? 'Freelance' : 'Client';
+            $role->save();
+        }
     }
 }

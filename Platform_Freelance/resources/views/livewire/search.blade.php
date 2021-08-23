@@ -1,5 +1,5 @@
 <div class="inline-block" x-data="{ open: true }">
-    <input @click.away="{ open = false; @this.resetIndex() }" @click="{ open = true }" class="bg-gray-200 text-gray-700 border-2 focus:outline-none placeholder-gray-500 px-4 py-1 rounded-full w-56" placeholder=" Rechercher une mission ..." wire:model="query"
+    <input @click.away="{ open = false; @this.resetIndex() }" @click="{ open = true }" class="bg-gray-200 text-gray-700 border-2 focus:outline-none placeholder-gray-500 px-4 py-1 mr-5 rounded-full w-72" placeholder=" Rechercher une mission ..." wire:model="query"
     wire:keydown.prevent.arrow-down="incrementIndex"
     wire:keydown.prevent.arrow-up="decrementIndex"
     wire:keydown.backspace="resetIndex"

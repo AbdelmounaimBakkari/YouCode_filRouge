@@ -9,13 +9,14 @@
         <script src="https://cdn.jsdelivr.net/gh/alpinejs/alpine@v2.7.2/dist/alpine.min.js" defer></script>
 
     </head>
-    <body>
-      <div class="container mx-auto px-4">
+    <body class="bg-white scrollbar">
+      <div class="mx-auto">
         @include('partials.navbar')
-        <div class="sticky top-0"> 
+        <div class="sticky top-0">
           <livewire:flash /> 
         </div>
         @yield('content')
+        @include('partials.footer')
       </div>
       @livewireScripts
     </body>

@@ -10,7 +10,7 @@
         <p class="text-gray-600"> Lorem consectetur adipisicing elit.</p>
         <input type="text" name="title" placeholder="Nom de votre mission" class="border p-2 w-full mt-3">
         <textarea name="description" cols="10" rows="3" placeholder="Description .." class="border p-2 mt-3 w-full"></textarea>
-        <input type="number" step="10" name="price" placeholder="prix en MAD" class="border p-2 w-full mt-3">
+        <input type="number" name="price" placeholder="prix en MAD" class="border p-2 w-full mt-3">
         <button type="submit" class="w-full mt-6 bg-blue-600 hover:bg-blue-500 text-white font-semibold p-3">Créer la mission</button>
     </form>
 

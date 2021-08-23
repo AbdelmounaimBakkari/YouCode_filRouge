@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>Error</title>
+    <title>Page Not Found</title>
     <style>
         @import url("https://fonts.googleapis.com/css?family=Press+Start+2P");
 html,
@@ -21,12 +21,12 @@ body {
 
 #app {
   padding: 1rem;
-  background: black;
+  background: #1F2937;
   display: flex;
   height: 100%;
   justify-content: center;
   align-items: center;
-  color: #54fe55;
+  color: #60A5FA;
   text-shadow: 0px 0px 10px;
   font-size: 6rem;
   flex-direction: column;

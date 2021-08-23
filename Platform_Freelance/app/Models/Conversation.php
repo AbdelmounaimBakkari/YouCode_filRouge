@@ -18,6 +18,16 @@ class Conversation extends Model
         return $this->hasMany(Message::class);
     }
 
+    public function getToUser()
+    {
+        return User::where('id', $this->to)->first();
+    }
+
+    public function getFromUser()
+    {
+        return User::where('id', $this->from)->first();
+    }
+
     public function job()
     {
         return $this->belongsTo(job::class);

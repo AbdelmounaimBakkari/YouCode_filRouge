@@ -3,15 +3,36 @@
 namespace App\Http\Controllers;
 
 use App\Models\Job;
+use Carbon\Carbon;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 
 class JobController extends Controller
 {
     public function index()
     {
         $jobs = Job::online()->latest()->get();
-
+        Carbon::setLocale('fr');
         return view('jobs.index', [
+            'jobs' => $jobs
+        ]);
+    }
+
+
+    public function show(Job $id)
+    {
+        return view('jobs.show', [
+            'job' => $id
+        ]);
+    }
+
+    public function indexDashboard()
+    {
+        // dd(["", auth()->user(), Auth::user()]);
+        $id = Auth::user()->id;
+        $jobs = Job::online()->latest()->where('user_id', $id)->get();
+
+        return view('dashboard.index', [
             'jobs' => $jobs
         ]);
     }
@@ -24,7 +45,6 @@ class JobController extends Controller
 
     public function store(Request $request)
     {
-        // dd('oui, je suis ici');
         $request->validate([
             'title' => 'required',
             'description' => 'required',
@@ -38,50 +58,45 @@ class JobController extends Controller
             'user_id' => auth()->user()->id
         ]);
 
-        return view('jobs.show', ['job' => $job]);
+        // return view('jobs.show', ['job' => $job]);
+        return redirect()->route('jobs.indexDashboard');
     }
 
-
-    public function show(Job $id)
-    {
-        return view('jobs.show', [
-            'job' => $id
-        ]);
-    }
 
 
     public function edit(Job $id)
     {
-        // return view('blog.edit')
-        //     ->with('post', Post::where('slug', $slug)->first());
+        return view('jobs.edit', [
+            'job' => $id
+        ]);
     }
 
     public function update(Request $request, Job $id)
     {
-        // $request->validate([
-        //     'title' => 'required',
-        //     'description' => 'required',
-        // ]);
+        $request->validate([
+            'title' => 'required',
+            'description' => 'required',
+            'price' => 'required'
+        ]);
 
-        // Post::where('slug', $slug)
-        //     ->update([
-        //     'title' => $request->input('title'),
-        //     'description' => $request->input('description'),
-        //     'slug' => SlugService::createSlug(Post::class, 'slug', $request->title),
-        //     'user_id' => auth()->user()->id
-        //     ]);
+        $updatedJob = tap(Job::where('id', $id->id))
+            ->update([
+                'title' => $request->input('title'),
+                'description' => $request->input('description'),
+                'price' => (float)$request->input('price') * 100,
+            ])->first();
 
-        // return redirect('/blog')
-        //     ->with('message', 'Your post has been updated !');
+        // return view('jobs.show', ['job' => $updatedJob]);
+        return redirect()->route('jobs.indexDashboard');
     }
 
 
-    public function destroy(Job $is)
+    public function destroy(Job $id)
     {
-        // $post = Post::where('slug', $slug);
-        // $post->delete();
-
-        // return redirect('/blog')
-        //     ->with('message', 'Your post has been deleted !');
+        // $remove = Job::where('id', $job->id);
+        // $remove
+        // dd([$job->id]);
+        $id->delete();
+        return redirect()->route('jobs.indexDashboard');
     }
 }

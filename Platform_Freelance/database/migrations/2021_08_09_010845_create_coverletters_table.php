@@ -15,7 +15,7 @@ class CreateCoverlettersTable extends Migration
     {
         Schema::create('coverletters', function (Blueprint $table) {
             $table->id();
-            $table->foreignId('proposal_id')->constrained();
+            $table->foreignId('proposal_id')->constrained()->onDelete('cascade');
             $table->text('content');
             $table->timestamps();
         });

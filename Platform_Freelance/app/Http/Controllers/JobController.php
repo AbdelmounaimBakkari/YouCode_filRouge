@@ -69,6 +69,9 @@ class JobController extends Controller
         return view('jobs.edit', [
             'job' => $id
         ]);
+        // return view('jobs.create', [
+        //     'job' => $id
+        // ]);
     }
 
     public function update(Request $request, Job $id)

@@ -1,4 +1,4 @@
-<div class="text-lef lol">
+<div class="text-left">
     <div class="py-6">
         <div class="flex max-w-md h-80 bg-white shadow-lg rounded-lg overflow-hidden">
             <div class="w-1/3 bg-blue-400">

@@ -15,7 +15,9 @@
         <div class="sticky top-0">
           <livewire:flash /> 
         </div>
-        @yield('content')
+        <div class="min-h-screen">
+          @yield('content')
+        </div>
         @include('partials.footer')
       </div>
       @livewireScripts

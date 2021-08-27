@@ -6,7 +6,7 @@
     width: 10px;
 }
 .scrollbar::-webkit-scrollbar-track {
-    background: #f1f1f1; 
+    background: transparent; 
 }
 .scrollbar::-webkit-scrollbar-thumb {
     background: #888; 

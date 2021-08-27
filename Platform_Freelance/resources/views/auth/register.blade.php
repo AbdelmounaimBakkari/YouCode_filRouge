@@ -1,7 +1,7 @@
 @extends('layouts.app')
 
 @section('content')
-<h1 class="text-3xl text-green-500 mb-6 text-center">Completez vos informations</h1>
+<h1 class="text-3xl text-blue-400 mb-6 text-center pt-10">Completez vos informations</h1>
 <form method="POST" action="{{ route('register') }}" class="w-full max-w-sm mx-auto rounded-lg border shadow-md p-5 mb-5">
     @csrf
     <div class="mb-4">
@@ -48,6 +48,6 @@
         <span class="text-red-400 text-sm block">{{ $message }}</span>
     @enderror
 
-    <button type="submit" class="bg-green-500 text-white hover:bg-green-700 transition ease-in-out duration-500 rounded-md shadow-md w-full block px-4 py-2 mt-3">Créer mon compte</button>
+    <button type="submit" class="bg-blue-400 text-white hover:bg-gray-800 transition ease-in-out duration-500 rounded-md shadow-md w-full block px-4 py-2 mt-3">Créer mon compte</button>
 </form>
 @endsection

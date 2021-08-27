@@ -43,14 +43,6 @@
 
                     @endif
 
-                    <li @click="clkSide = 'test'" class="mb-10">
-                        <span>
-                            <h1 class="h-5 w-5 mx-auto text-gray-300 hover:text-blue-400" :class="{ 'text-blue-400': clkSide === 'test'}">
-                                TEST
-                            </h1>
-                        </span>
-                    </li>
-
                 </ul>
             </div>
         </div>
@@ -160,51 +152,26 @@
             @endif
             <section x-show="clkSide === 'favorites'" class="text-gray-800 w-full">
                 <div x-data="{ clkJob : '' }" class="flex flex-row gap-5 p-20 h-screen">
-                    <div class="w-full h-4/5 rounded-lg bg-gray-300 p-5 overflow-auto scrollbar">
+                    <div class="w-full h-4/5 rounded-lg bg-gray-300 p-8 overflow-auto scrollbar">
                         <div class="flex justify-between mb-5">
-                            <h5 class="font-semibold text-2xl">Vos Services favorites ({{ auth()->user()->likes()->count() }})</h5>
+                            <h5 class="font-bold text-3xl">Vos favorites services ({{ auth()->user()->likes()->count() }})</h5>
                         </div>
+                        <div class="flex flex-wrap gap-4">
                         @foreach(auth()->user()->likes as $like)
-                        <p>{{ $like->title }}</p>
-                        <p>{{ $like->user->name }}</p>
-                        <p>{{ number_format($like->price / 100, 2, ',',' ') }} MAD</p>
-                        <div class="bg-gray-400 bg-opacity-25 h-px mt-2"></div>
+                            <a href="{{ route('jobs.show', [$like->id]) }}" class="p-5 w-5/12 mx-auto bg-blue-400 bg-opacity-50 rounded-md overflow">
+                                <p class="font-semibold text-2xl">{{ $like->title }}</p>
+                                <div class="flex justify-between">
+                                    <p class="text-xl">de: {{ $like->user->name }}</p>
+                                    <p class="text-xl">{{ number_format($like->price / 100, 2, ',',' ') }} MAD</p>
+                                </div>
+                                <div class="bg-gray-400 bg-opacity-25 h-px mt-2"></div>
+                            </a>
                         @endforeach
+                        </div>
                     </div>
                 </div>
-            
-                
-                <!-- <h2 class="text-xl my-2">
-                    <svg class="w-6 h-6 inline-block" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4.318 6.318a4.5 4.5 0 000 6.364L12 20.364l7.682-7.682a4.5 4.5 0 00-6.364-6.364L12 7.636l-1.318-1.318a4.5 4.5 0 00-6.364 0z" />
-                    </svg>
-                    Vos missions favorites ({{ auth()->user()->likes()->count() }})
-                </h2>
-                @foreach(auth()->user()->likes as $like)
-                <div class="mb-3">
-                    <span class="block font-semibold">
-                        {{ $like->title }}
-                    </span>
-                </div>
-                @endforeach -->
-            </section>
 
-            <section x-show="clkSide === 'test'" class="text-gray-800 w-full">
-                <h2 class="text-xl my-2">
-                    <svg class="w-6 h-6 inline-block" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4.318 6.318a4.5 4.5 0 000 6.364L12 20.364l7.682-7.682a4.5 4.5 0 00-6.364-6.364L12 7.636l-1.318-1.318a4.5 4.5 0 00-6.364 0z" />
-                    </svg>
-                    Vos missions favorites ({{ auth()->user()->likes()->count() }})
-                </h2>
-                @foreach(auth()->user()->likes as $like)
-                <div class="mb-3">
-                    <span class="block font-semibold">
-                        {{ $like->title }}
-                    </span>
-                </div>
-                @endforeach
             </section>
-            
             
         </div>
     </div>

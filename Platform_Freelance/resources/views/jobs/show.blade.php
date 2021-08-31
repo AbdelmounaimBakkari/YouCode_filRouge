@@ -24,27 +24,30 @@
         <span class=" text-2xl font-bold text-gray-600">
             {{ number_format($job->price / 100, 2, ',',' ') }} MAD
         </span>
+
+        @guest
+        <section class="relative">
+            <a class="bg-blue-100 text-gray-300 rounded shadow py-2 px-4 border border-transparent mx-10 mb-20 cursor-not-allowed">Clique ici pour soumettre une candidature &#8628;</a>
+        </section>
+        @else
+
+        @if(auth()->user()->role_id === 2)
         <section x-data="{open: false}" class="relative">
-            <a class="bg-blue-300 hover:bg-transparent text-black hover:text-blue-500 rounded shadow hover:shadow-lg py-2 px-4 border border-transparent hover:border-blue-300 mx-10 mb-20 cursor-pointer" @click="open = !open">Clique ici pour soumettre une candidature &#8628;</a>
+            <a class="bg-blue-400 hover:bg-transparent text-black hover:text-blue-500 rounded shadow hover:shadow-lg py-2 px-4 border border-transparent hover:border-blue-400 mx-10 mb-20 cursor-pointer" @click="open = !open">Clique ici pour soumettre une candidature &#8628;</a>
             <form class="mt-10 -ml-72 w-full max-w-md" x-show="open" x-cloak method="POST" action="{{ route('proposals.store', $job) }}">
                 @csrf
                 <textarea name="content" cols="90" rows="6" class="p-3 font-thin border border-blue-300 scrollbar"></textarea>
                 <button type="submit" class="block bg-gray-800 hover:bg-blue-300 rounded shadow hover:shadow-lg text-white hover:text-black px-3 py-2">Soumettre ma lettre de motivation</button>
             </form>
         </section>
+        @elseif(auth()->user()->role_id === 1)
+        <section class="relative">
+            <a class="bg-blue-100 text-gray-300 rounded shadow py-2 px-4 border border-transparent mx-10 mb-20 cursor-not-allowed">Clique ici pour soumettre une candidature &#8628;</a>
+        </section>
+        @endif
+        @endguest
     </div>
 </div>
 <br>
 
-
-
-{{-- :::::::::::: --}}
-    {{-- <section x-data="{open: false}">
-        <a class="bg-blue-300 hover:bg-transparent text-black hover:text-blue-300 rounded shadow hover:shadow-lg py-2 px-4 border border-transparent hover:border-blue-300 mx-10 mb-20" @click="open = !open">Clique ici pour soumettre une candidature</a>
-        <form class="w-full max-w-md" x-show="open" x-cloak method="POST" action="{{ route('proposals.store', $job) }}">
-            @csrf
-            <textarea name="content" cols="90" rows="6" class="p-3 font-thin border border-green-300"></textarea>
-            <button type="submit" class="block bg-green-700 text-white px-3 py-2">Soumettre ma lettre de motivation</button>
-        </form>
-    </section> --}}
 @endsection

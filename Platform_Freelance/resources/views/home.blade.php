@@ -49,7 +49,7 @@
     </nav>
     <div class="px-16 py-4 text-gray-700 bg-gray-200 h-screen w-screen">
         <!-- Content -->
-        <h1 class="text-3xl text-green-500">Tableau de bord</h1>
+        <h1 class="text-3xl text-gray-800 mt-6">Tableau de bord</h1>
         <div class="flex flex-col md:flex-row">
 
             @if(auth()->user()->role_id === 1)
